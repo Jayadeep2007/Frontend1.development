@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyboard Controlled Webpage / Game | Practical Programs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.demo-form { display:grid; gap:14px; margin-top:18px; }
+.demo-form input, .demo-form textarea, .demo-form select { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; }
+.demo-form button, button { padding:10px 16px; cursor:pointer; }
+.output-box { margin-top:18px; padding:14px; white-space:pre-wrap; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+img.demo-img { max-width:100%; border-radius:10px; }
+.box { padding:15px; border:1px solid #ddd; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html"><span class="brand-dot">JR</span>Jayadeep</a>
+  <nav class="crumbs">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Back to JavaScript Programs</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title">Keyboard Controlled Webpage / Game</h1>
+  <p class="subtitle">Move the player using the arrow keys.</p>
+  <div class="program-box">
+
+<div id="game" class="box" style="height:260px; position:relative; overflow:hidden;">
+<div id="player" style="position:absolute;left:20px;top:20px;width:40px;height:40px;background:#333;border-radius:6px;"></div>
+</div>
+<p>Use Arrow Keys to move.</p>
+
+  </div>
+  <footer class="page-nav">
+    <a href="../index.html">Home</a>
+    <a class="secondary" href="index.html">Back to JavaScript Programs</a>
+  </footer>
+</main>
+<script>
+
+const player = document.getElementById("player");
+let x = 20, y = 20;
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight") x += 10;
+  if (e.key === "ArrowLeft") x -= 10;
+  if (e.key === "ArrowDown") y += 10;
+  if (e.key === "ArrowUp") y -= 10;
+  x = Math.max(0, Math.min(420, x));
+  y = Math.max(0, Math.min(220, y));
+  player.style.left = x + "px";
+  player.style.top = y + "px";
+});
+
+</script>
+</body>
+</html>

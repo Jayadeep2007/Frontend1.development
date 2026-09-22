@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator | Practical Programs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.demo-form { display:grid; gap:14px; margin-top:18px; }
+.demo-form input, .demo-form textarea, .demo-form select { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; }
+.demo-form button, button { padding:10px 16px; cursor:pointer; }
+.output-box { margin-top:18px; padding:14px; white-space:pre-wrap; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+img.demo-img { max-width:100%; border-radius:10px; }
+.box { padding:15px; border:1px solid #ddd; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html"><span class="brand-dot">JR</span>Jayadeep</a>
+  <nav class="crumbs">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Back to JavaScript Programs</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title">BMI Calculator</h1>
+  <p class="subtitle">Calculates Body Mass Index from weight and height.</p>
+  <div class="program-box">
+
+<input id="weight" type="number" placeholder="Weight (kg)">
+<input id="height" type="number" placeholder="Height (cm)">
+<button onclick="calculateBMI()">Calculate BMI</button>
+<div id="out" class="output-box"></div>
+
+  </div>
+  <footer class="page-nav">
+    <a href="../index.html">Home</a>
+    <a class="secondary" href="index.html">Back to JavaScript Programs</a>
+  </footer>
+</main>
+<script>
+
+function calculateBMI() {
+  const weight = Number(document.getElementById("weight").value);
+  const height = Number(document.getElementById("height").value) / 100;
+  if (weight <= 0 || height <= 0) return document.getElementById("out").textContent = "Enter valid values.";
+  const bmi = weight / (height * height);
+  let category = bmi < 18.5 ? "Underweight" : bmi < 25 ? "Normal range" : bmi < 30 ? "Overweight" : "Obesity range";
+  document.getElementById("out").textContent = "BMI: " + bmi.toFixed(2) + "\nCategory: " + category;
+}
+
+</script>
+</body>
+</html>

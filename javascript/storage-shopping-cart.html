@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart Using localStorage | Practical Programs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.demo-form { display:grid; gap:14px; margin-top:18px; }
+.demo-form input, .demo-form textarea, .demo-form select { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; }
+.demo-form button, button { padding:10px 16px; cursor:pointer; }
+.output-box { margin-top:18px; padding:14px; white-space:pre-wrap; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+img.demo-img { max-width:100%; border-radius:10px; }
+.box { padding:15px; border:1px solid #ddd; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html"><span class="brand-dot">JR</span>Jayadeep</a>
+  <nav class="crumbs">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Back to JavaScript Programs</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title">Shopping Cart Using localStorage</h1>
+  <p class="subtitle">Stores a simple shopping cart in localStorage.</p>
+  <div class="program-box">
+
+<button onclick="addItem('Notebook',50)">Add Notebook ₹50</button>
+<button onclick="addItem('Pen',20)">Add Pen ₹20</button>
+<button onclick="addItem('Bag',500)">Add Bag ₹500</button>
+<div id="out" class="output-box"></div>
+
+  </div>
+  <footer class="page-nav">
+    <a href="../index.html">Home</a>
+    <a class="secondary" href="index.html">Back to JavaScript Programs</a>
+  </footer>
+</main>
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+function addItem(name, price) {
+  cart.push({name, price});
+  localStorage.setItem("cart", JSON.stringify(cart));
+  showCart();
+}
+function showCart() {
+  let total = 0;
+  const lines = cart.map((item, i) => {
+    total += item.price;
+    return (i + 1) + ". " + item.name + " - ₹" + item.price;
+  });
+  document.getElementById("out").textContent =
+    (lines.join("\n") || "Cart is empty") + "\nTotal: ₹" + total;
+}
+showCart();
+
+</script>
+</body>
+</html>

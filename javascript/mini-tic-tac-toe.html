@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic-Tac-Toe | Practical Programs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.demo-form { display:grid; gap:14px; margin-top:18px; }
+.demo-form input, .demo-form textarea, .demo-form select { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; }
+.demo-form button, button { padding:10px 16px; cursor:pointer; }
+.output-box { margin-top:18px; padding:14px; white-space:pre-wrap; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+img.demo-img { max-width:100%; border-radius:10px; }
+.box { padding:15px; border:1px solid #ddd; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html"><span class="brand-dot">JR</span>Jayadeep</a>
+  <nav class="crumbs">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Back to JavaScript Programs</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title">Tic-Tac-Toe</h1>
+  <p class="subtitle">Two-player Tic-Tac-Toe game.</p>
+  <div class="program-box">
+
+<div id="board" style="display:grid;grid-template-columns:repeat(3,70px);gap:5px;"></div>
+<div id="out" class="output-box">Player X's turn</div>
+<button onclick="resetGame()">Reset</button>
+
+  </div>
+  <footer class="page-nav">
+    <a href="../index.html">Home</a>
+    <a class="secondary" href="index.html">Back to JavaScript Programs</a>
+  </footer>
+</main>
+<script>
+
+let board = Array(9).fill("");
+let player = "X";
+const boardEl = document.getElementById("board");
+function renderBoard() {
+  boardEl.innerHTML = "";
+  board.forEach((value, i) => {
+    const b = document.createElement("button");
+    b.style.height = "70px";
+    b.style.fontSize = "25px";
+    b.textContent = value;
+    b.onclick = () => play(i);
+    boardEl.appendChild(b);
+  });
+}
+function play(i) {
+  if (board[i] || winner()) return;
+  board[i] = player;
+  if (winner()) document.getElementById("out").textContent = "Player " + player + " wins!";
+  else if (board.every(Boolean)) document.getElementById("out").textContent = "Draw!";
+  else { player = player === "X" ? "O" : "X"; document.getElementById("out").textContent = "Player " + player + "'s turn"; }
+  renderBoard();
+}
+function winner() {
+  return [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+    .some(([a,b,c]) => board[a] && board[a] === board[b] && board[a] === board[c]);
+}
+function resetGame() { board = Array(9).fill(""); player = "X"; document.getElementById("out").textContent = "Player X's turn"; renderBoard(); }
+renderBoard();
+
+</script>
+</body>
+</html>

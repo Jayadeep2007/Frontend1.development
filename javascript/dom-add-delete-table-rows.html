@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add and Delete Rows from a Table | Practical Programs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.demo-form { display:grid; gap:14px; margin-top:18px; }
+.demo-form input, .demo-form textarea, .demo-form select { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; }
+.demo-form button, button { padding:10px 16px; cursor:pointer; }
+.output-box { margin-top:18px; padding:14px; white-space:pre-wrap; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+img.demo-img { max-width:100%; border-radius:10px; }
+.box { padding:15px; border:1px solid #ddd; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html"><span class="brand-dot">JR</span>Jayadeep</a>
+  <nav class="crumbs">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Back to JavaScript Programs</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title">Add and Delete Rows from a Table</h1>
+  <p class="subtitle">Adds and deletes table records dynamically.</p>
+  <div class="program-box">
+
+<form class="demo-form" onsubmit="return false;">
+<label>Name <input id="name"></label>
+<label>Mark <input id="mark" type="number"></label>
+<button onclick="addRow()">Add Row</button>
+</form>
+<table id="studentTable">
+<tr><th>Name</th><th>Mark</th><th>Action</th></tr>
+</table>
+
+  </div>
+  <footer class="page-nav">
+    <a href="../index.html">Home</a>
+    <a class="secondary" href="index.html">Back to JavaScript Programs</a>
+  </footer>
+</main>
+<script>
+
+function addRow() {
+  const name = document.getElementById("name").value.trim();
+  const mark = document.getElementById("mark").value;
+  if (!name || mark === "") return;
+  const row = document.getElementById("studentTable").insertRow();
+  row.insertCell().textContent = name;
+  row.insertCell().textContent = mark;
+  const action = row.insertCell();
+  const button = document.createElement("button");
+  button.textContent = "Delete";
+  button.onclick = () => row.remove();
+  action.appendChild(button);
+  document.getElementById("name").value = "";
+  document.getElementById("mark").value = "";
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Application Using an API | Practical Programs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.demo-form { display:grid; gap:14px; margin-top:18px; }
+.demo-form input, .demo-form textarea, .demo-form select { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; }
+.demo-form button, button { padding:10px 16px; cursor:pointer; }
+.output-box { margin-top:18px; padding:14px; white-space:pre-wrap; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+img.demo-img { max-width:100%; border-radius:10px; }
+.box { padding:15px; border:1px solid #ddd; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html"><span class="brand-dot">JR</span>Jayadeep</a>
+  <nav class="crumbs">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Back to JavaScript Programs</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title">Weather Application Using an API</h1>
+  <p class="subtitle">Fetches current weather from wttr.in.</p>
+  <div class="program-box">
+
+<input id="city" value="Chennai" placeholder="City">
+<button onclick="getWeather()">Get Weather</button>
+<div id="out" class="output-box"></div>
+
+  </div>
+  <footer class="page-nav">
+    <a href="../index.html">Home</a>
+    <a class="secondary" href="index.html">Back to JavaScript Programs</a>
+  </footer>
+</main>
+<script>
+
+async function getWeather() {
+  const city = encodeURIComponent(document.getElementById("city").value.trim());
+  const out = document.getElementById("out");
+  if (!city) return;
+  out.textContent = "Loading...";
+  try {
+    const response = await fetch("https://wttr.in/" + city + "?format=j1");
+    const data = await response.json();
+    const current = data.current_condition[0];
+    out.textContent =
+      "Temperature: " + current.temp_C + "°C\n" +
+      "Feels like: " + current.FeelsLikeC + "°C\n" +
+      "Condition: " + current.weatherDesc[0].value;
+  } catch {
+    out.textContent = "Unable to fetch weather data.";
+  }
+}
+
+</script>
+</body>
+</html>

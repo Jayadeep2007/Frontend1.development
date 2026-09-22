@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>getElementById() and getElementsByClassName() | Practical Programs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.demo-form { display:grid; gap:14px; margin-top:18px; }
+.demo-form input, .demo-form textarea, .demo-form select { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; }
+.demo-form button, button { padding:10px 16px; cursor:pointer; }
+.output-box { margin-top:18px; padding:14px; white-space:pre-wrap; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+img.demo-img { max-width:100%; border-radius:10px; }
+.box { padding:15px; border:1px solid #ddd; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html"><span class="brand-dot">JR</span>Jayadeep</a>
+  <nav class="crumbs">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Back to JavaScript Programs</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title">getElementById() and getElementsByClassName()</h1>
+  <p class="subtitle">Demonstrates two commonly used DOM selection methods.</p>
+  <div class="program-box">
+
+<p id="one">Element selected by ID</p>
+<p class="group">Element 1 selected by class</p>
+<p class="group">Element 2 selected by class</p>
+<button onclick="demo()">Run Demo</button>
+<div id="out" class="output-box"></div>
+
+  </div>
+  <footer class="page-nav">
+    <a href="../index.html">Home</a>
+    <a class="secondary" href="index.html">Back to JavaScript Programs</a>
+  </footer>
+</main>
+<script>
+
+function demo() {
+  const first = document.getElementById("one");
+  const group = document.getElementsByClassName("group");
+  first.textContent = "Changed using getElementById()";
+  for (let i = 0; i < group.length; i++) {
+    group[i].textContent = "Changed using getElementsByClassName()";
+  }
+  document.getElementById("out").textContent =
+    "Number of class elements: " + group.length;
+}
+
+</script>
+</body>
+</html>

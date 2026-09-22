@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search and Filter Table Records | Practical Programs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.demo-form { display:grid; gap:14px; margin-top:18px; }
+.demo-form input, .demo-form textarea, .demo-form select { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; }
+.demo-form button, button { padding:10px 16px; cursor:pointer; }
+.output-box { margin-top:18px; padding:14px; white-space:pre-wrap; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+img.demo-img { max-width:100%; border-radius:10px; }
+.box { padding:15px; border:1px solid #ddd; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html"><span class="brand-dot">JR</span>Jayadeep</a>
+  <nav class="crumbs">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Back to JavaScript Programs</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title">Search and Filter Table Records</h1>
+  <p class="subtitle">Filters table rows while typing.</p>
+  <div class="program-box">
+
+<input id="search" placeholder="Search by name or course" oninput="filterTable()">
+<table id="dataTable">
+<tr><th>Name</th><th>Course</th></tr>
+<tr><td>Jayadeep</td><td>CDS</td></tr>
+<tr><td>Deepak</td><td>CSE</td></tr>
+<tr><td>Akshara</td><td>CDS</td></tr>
+<tr><td>Harshith</td><td>ECE</td></tr>
+</table>
+
+  </div>
+  <footer class="page-nav">
+    <a href="../index.html">Home</a>
+    <a class="secondary" href="index.html">Back to JavaScript Programs</a>
+  </footer>
+</main>
+<script>
+
+function filterTable() {
+  const value = document.getElementById("search").value.toLowerCase();
+  const rows = document.querySelectorAll("#dataTable tr");
+  rows.forEach((row, index) => {
+    if (index === 0) return;
+    row.style.display = row.textContent.toLowerCase().includes(value) ? "" : "none";
+  });
+}
+
+</script>
+</body>
+</html>

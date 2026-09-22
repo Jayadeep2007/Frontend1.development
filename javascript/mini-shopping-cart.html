@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Shopping Cart | Practical Programs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.demo-form { display:grid; gap:14px; margin-top:18px; }
+.demo-form input, .demo-form textarea, .demo-form select { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; }
+.demo-form button, button { padding:10px 16px; cursor:pointer; }
+.output-box { margin-top:18px; padding:14px; white-space:pre-wrap; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+img.demo-img { max-width:100%; border-radius:10px; }
+.box { padding:15px; border:1px solid #ddd; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html"><span class="brand-dot">JR</span>Jayadeep</a>
+  <nav class="crumbs">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Back to JavaScript Programs</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title">Simple Shopping Cart</h1>
+  <p class="subtitle">Adds products to a cart and calculates total.</p>
+  <div class="program-box">
+
+<button onclick="add('T-Shirt',799)">T-Shirt ₹799</button>
+<button onclick="add('Shoes',1499)">Shoes ₹1499</button>
+<button onclick="add('Cap',299)">Cap ₹299</button>
+<div id="cart" class="output-box"></div>
+
+  </div>
+  <footer class="page-nav">
+    <a href="../index.html">Home</a>
+    <a class="secondary" href="index.html">Back to JavaScript Programs</a>
+  </footer>
+</main>
+<script>
+
+const products = [];
+function add(name, price) {
+  products.push({name, price});
+  show();
+}
+function show() {
+  const total = products.reduce((sum, p) => sum + p.price, 0);
+  document.getElementById("cart").textContent =
+    (products.map(p => p.name + " - ₹" + p.price).join("\n") || "Cart is empty") +
+    "\nTotal: ₹" + total;
+}
+show();
+
+</script>
+</body>
+</html>

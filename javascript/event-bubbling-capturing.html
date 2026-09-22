@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Bubbling and Event Capturing | Practical Programs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.demo-form { display:grid; gap:14px; margin-top:18px; }
+.demo-form input, .demo-form textarea, .demo-form select { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; }
+.demo-form button, button { padding:10px 16px; cursor:pointer; }
+.output-box { margin-top:18px; padding:14px; white-space:pre-wrap; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+img.demo-img { max-width:100%; border-radius:10px; }
+.box { padding:15px; border:1px solid #ddd; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html"><span class="brand-dot">JR</span>Jayadeep</a>
+  <nav class="crumbs">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Back to JavaScript Programs</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title">Event Bubbling and Event Capturing</h1>
+  <p class="subtitle">Shows event propagation in bubbling and capturing phases.</p>
+  <div class="program-box">
+
+<div id="outer" class="box">Outer
+  <div id="inner" class="box">Inner</div>
+</div>
+<button onclick="clearLog()">Clear</button>
+<pre id="out" class="output-box"></pre>
+
+  </div>
+  <footer class="page-nav">
+    <a href="../index.html">Home</a>
+    <a class="secondary" href="index.html">Back to JavaScript Programs</a>
+  </footer>
+</main>
+<script>
+
+const outer = document.getElementById("outer");
+const inner = document.getElementById("inner");
+const out = document.getElementById("out");
+function log(message) { out.textContent += message + "\n"; }
+outer.addEventListener("click", () => log("Outer - bubbling"), false);
+inner.addEventListener("click", () => log("Inner - bubbling"), false);
+outer.addEventListener("click", () => log("Outer - capturing"), true);
+inner.addEventListener("click", () => log("Inner - capturing"), true);
+function clearLog() { out.textContent = ""; }
+
+</script>
+</body>
+</html>

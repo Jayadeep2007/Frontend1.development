@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback Form Validation | Practical Programs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.demo-form { display:grid; gap:14px; margin-top:18px; }
+.demo-form input, .demo-form textarea, .demo-form select { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; }
+.demo-form button, button { padding:10px 16px; cursor:pointer; }
+.output-box { margin-top:18px; padding:14px; white-space:pre-wrap; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+img.demo-img { max-width:100%; border-radius:10px; }
+.box { padding:15px; border:1px solid #ddd; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html"><span class="brand-dot">JR</span>Jayadeep</a>
+  <nav class="crumbs">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Back to JavaScript Programs</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title">Feedback Form Validation</h1>
+  <p class="subtitle">Validates a feedback form.</p>
+  <div class="program-box">
+
+<form class="demo-form" onsubmit="return validateFeedback()">
+<label>Name <input id="name"></label>
+<label>Rating <select id="rating"><option value="">Select rating</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select></label>
+<label>Feedback <textarea id="feedback"></textarea></label>
+<button>Submit Feedback</button>
+</form>
+<div id="out" class="output-box"></div>
+
+  </div>
+  <footer class="page-nav">
+    <a href="../index.html">Home</a>
+    <a class="secondary" href="index.html">Back to JavaScript Programs</a>
+  </footer>
+</main>
+<script>
+
+function validateFeedback() {
+  const name = document.getElementById("name").value.trim();
+  const rating = document.getElementById("rating").value;
+  const feedback = document.getElementById("feedback").value.trim();
+  document.getElementById("out").textContent =
+    name && rating && feedback ? "Feedback submitted successfully." : "Please complete all fields.";
+  return false;
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Tracker | Practical Programs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.demo-form { display:grid; gap:14px; margin-top:18px; }
+.demo-form input, .demo-form textarea, .demo-form select { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; }
+.demo-form button, button { padding:10px 16px; cursor:pointer; }
+.output-box { margin-top:18px; padding:14px; white-space:pre-wrap; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+img.demo-img { max-width:100%; border-radius:10px; }
+.box { padding:15px; border:1px solid #ddd; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html"><span class="brand-dot">JR</span>Jayadeep</a>
+  <nav class="crumbs">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Back to JavaScript Programs</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title">Expense Tracker</h1>
+  <p class="subtitle">Adds expenses and calculates the total.</p>
+  <div class="program-box">
+
+<input id="item" placeholder="Expense name">
+<input id="amount" type="number" placeholder="Amount">
+<button onclick="addExpense()">Add Expense</button>
+<ul id="list"></ul>
+<div id="total" class="output-box">Total: ₹0</div>
+
+  </div>
+  <footer class="page-nav">
+    <a href="../index.html">Home</a>
+    <a class="secondary" href="index.html">Back to JavaScript Programs</a>
+  </footer>
+</main>
+<script>
+
+let total = 0;
+function addExpense() {
+  const item = document.getElementById("item").value.trim();
+  const amount = Number(document.getElementById("amount").value);
+  if (!item || amount <= 0) return;
+  total += amount;
+  const li = document.createElement("li");
+  li.textContent = item + " - ₹" + amount;
+  document.getElementById("list").appendChild(li);
+  document.getElementById("total").textContent = "Total: ₹" + total;
+}
+
+</script>
+</body>
+</html>
